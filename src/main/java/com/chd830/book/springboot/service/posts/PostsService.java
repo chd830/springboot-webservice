@@ -2,6 +2,7 @@ package com.chd830.book.springboot.service.posts;
 
 import com.chd830.book.springboot.domain.posts.Posts;
 import com.chd830.book.springboot.domain.posts.PostsRepository;
+import com.chd830.book.springboot.web.dto.PostsListResponseDto;
 import com.chd830.book.springboot.web.dto.PostsResponseDto;
 import com.chd830.book.springboot.web.dto.PostsSaveRequestDto;
 import com.chd830.book.springboot.web.dto.PostsUpdateRequestDto;
@@ -10,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,4 +38,10 @@ public class PostsService {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
         return new PostsResponseDto(entity);
     }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream().map(posts -> new PostsListResponseDto(posts)).collect(Collectors.toList());
+    }
+
 }
