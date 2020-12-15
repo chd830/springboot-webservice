@@ -4,6 +4,9 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="springboot-webservice_main" target="1.8" />
+      <module name="springboot-webservice_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
