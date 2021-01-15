@@ -7,52 +7,13 @@ import lombok.Getter;
 
 import java.util.Map;
 
+@Getter
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String name;
     private String email;
     private String picture;
-
-    public Map<String, Object> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, Object> attributes) {
-        this.attributes = attributes;
-    }
-
-    public String getNameAttributeKey() {
-        return nameAttributeKey;
-    }
-
-    public void setNameAttributeKey(String nameAttributeKey) {
-        this.nameAttributeKey = nameAttributeKey;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture) {
@@ -75,6 +36,6 @@ public class OAuthAttributes {
     }
 
     public User toEntity() {
-        return User.builder().name(name).email(email).picture(picture).role(Role.GUEST).builder();
+        return User.builder().name(name).email(email).picture(picture).role(Role.GUEST).build();
     }
 }

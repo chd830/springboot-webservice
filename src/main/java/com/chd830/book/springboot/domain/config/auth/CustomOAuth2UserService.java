@@ -4,6 +4,7 @@ import com.chd830.book.springboot.domain.config.auth.dto.OAuthAttributes;
 import com.chd830.book.springboot.domain.config.auth.dto.SessionUser;
 import com.chd830.book.springboot.domain.user.User;
 import com.chd830.book.springboot.domain.user.UserRepository;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -19,6 +20,7 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
+@Getter
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserRepository userRepository;
     private final HttpSession httpSession;
