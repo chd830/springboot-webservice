@@ -1,6 +1,6 @@
 package com.chd830.book.springboot.web;
 
-import com.chd830.book.springboot.domain.config.auth.dto.SessionUser;
+import com.chd830.book.springboot.config.auth.dto.SessionUser;
 import com.chd830.book.springboot.service.posts.PostsService;
 import com.chd830.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -15,16 +15,19 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    private final PostsService postsService;
+    private final PostsService postService;
     private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("posts", postsService.findAllDesc());
+        model.addAttribute("posts", postService.findAllDesc());
+
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        if(user != null) {
+
+        if(user != null){
             model.addAttribute("userName", user.getName());
         }
+
         return "index";
     }
 
@@ -35,7 +38,7 @@ public class IndexController {
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
-        PostsResponseDto dto = postsService.findById(id);
+        PostsResponseDto dto = postService.findById(id);
         model.addAttribute("post", dto);
         return "posts-update";
     }

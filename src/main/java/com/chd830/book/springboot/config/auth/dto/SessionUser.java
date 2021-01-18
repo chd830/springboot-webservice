@@ -1,4 +1,4 @@
-package com.chd830.book.springboot.domain.config.auth.dto;
+package com.chd830.book.springboot.config.auth.dto;
 
 import com.chd830.book.springboot.domain.user.User;
 import lombok.Getter;
